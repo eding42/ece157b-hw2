@@ -1,0 +1,6 @@
+ollama==0.1.7
+pdfminer.six==20231228
+pip==23.0.1
+setuptools==65.5.0
+torch==2.2.1
+transformers==4.39.1
