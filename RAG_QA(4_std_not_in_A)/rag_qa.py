@@ -11,7 +11,7 @@ class RAGSystem:
     def __init__(
         self,
         encoder_model: str = 'sentence-transformers/all-mpnet-base-v2',
-        llm_model: str = ['your_model'], #TODO: fit in your model
+        llm_model: str = 'llama3.2:latest', #TODO: fit in your model
         n_documents: int = 3
     ):
         # Initialize components
@@ -76,10 +76,30 @@ def main():
     rag = RAGSystem()
     
     # Load PDFs
-    pdf_path = "Question answering - Hugging Face NLP Course.pdf"
+    pdf_path = "/Users/edward/Documents/ece-157B/ece157b-hw2/Question answering - Hugging Face NLP Course.pdf"
     #TODO: load pdf into the model
-    
+    print(f"Loading PDF: {pdf_path}")
+    rag.load_pdf(pdf_path)
+
     #TODO Ask questions, and generate the response
+    queries = [
+        "What is tricky about processing the answer field of the dataset?",
+        "How are the labels for the answer formatted?",
+        "What type of tokenizer is needed?",
+        "How do we deal with long context?",
+        "What is the stride parameter?",
+        "What will be the label if the answer got truncated in the splitting process?",
+        "What is the purpose of overflow_to_sample_mapping?",
+        "What is the post-process trying to do?",  
+        "What do you need to push the trained model to the Hub?"
+    ]
+    
+    for query in queries:
+        print(f"\nQuestion: {query}")
+        response = rag.generate_response(query)
+        print(f"Answer: {response}")
+
+
 
 if __name__ == "__main__":
     main()
